@@ -9,14 +9,14 @@
   <v-row no-gutters>
     <v-img
       :src='book_inf.largeImageUrl'
-      width="142.02"
+      max-width="142.02"
       height="220"
       class="rounded-l"
     ></v-img>
 
     <v-col cols="7">
       <v-card-title>
-        {{ book_inf.title | omittedText(32) }}
+        {{ book_inf.title | omittedText(31) }}
       </v-card-title>
       <v-card-subtitle>
       <br>
@@ -25,23 +25,23 @@
       </v-card-subtitle>
     </v-col>
 
+
     <v-col cols="1" class="mr-2">
       <v-btn
         icon
         class="mt-3"
         :retain-focus-on-click="false"
-        :color="show_love ? 'red' : '' "
-        @click="show_love = !show_love"
+        :color="show_like ? 'pink' : '' "
+        @click="show_like = !show_like"
         >
-        <v-icon>mdi-heart</v-icon>
+        <v-icon>{{ show_like ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
 
-    <v-card-actions style="position: relative z-index: 1">
+    <v-card-actions>
       <v-btn
         icon
         @click="show = !show"
-        absolute left
-        style="margin: 270px 0px 0px 250px"
+        style="margin: 120px 0px 0px -145px;"
       >
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
@@ -53,44 +53,44 @@
   <v-expand-transition>
     <div v-show="show">
       <v-divider></v-divider>
-
-      <v-card-text>
-        {{book_inf.itemCaption!=="" ? book_inf.itemCaption : "説明がありません。"}}
-      </v-card-text>
-      <v-row class="px-5 pb-2">
-        <v-btn
-        block
-        color="#BE0000"
-        outlined
-        :href="book_inf.itemUrl"
-        target="_blank">楽天で詳細をみる</v-btn>
-        <p class="py-3"> </p>
-        <v-btn
-        block
-        color="#f29100"
-        style="text-transform: none"
-        outlined
-        :href="'https://www.amazon.co.jp/s?k='+book_inf.isbn"
-        target="_blank">Amazonで詳細をみる</v-btn>
-      </v-row>
+      <div class="mx-2">
+        <v-card-text style="text-align: justify;">
+          {{book_inf.itemCaption!=="" ? book_inf.itemCaption : "説明がありません。"}}
+        </v-card-text>
+        <center class="pb-5">
+          <v-btn
+          color="#BE0000"
+          outlined
+          width="92%"
+          class="mb-2"
+          :href="book_inf.itemUrl"
+          target="_blank">楽天で詳細をみる</v-btn>
+          <v-btn
+          color="#f29100"
+          style="text-transform: none"
+          outlined
+          width="92%"
+          :href="'https://www.amazon.co.jp/s?k='+book_inf.isbn"
+          target="_blank">Amazonで詳細をみる</v-btn>
+        </center>
+      </div>
     </div>
   </v-expand-transition>
   </v-card>
   <div class="text-center pt-4 pb-12">
-  <v-btn fab large class="mx-4" @click="get('title',book_inf.title)">
-    <v-icon>mdi-book-open-variant</v-icon>
+  <v-btn fab large class="white mx-4" @click="get('title',book_inf.title)">
+    <v-icon color="blue-grey darken-4">mdi-book-open-variant</v-icon>
   </v-btn>
-  <v-btn fab large class="mx-4" @click="get('author',book_inf.author)">
-    <v-icon>mdi-account</v-icon>
+  <v-btn fab large class="white mx-4" @click="get('author',book_inf.author)">
+    <v-icon color="blue-grey darken-4">mdi-account</v-icon>
   </v-btn>
-  <v-btn fab large class="mx-4" @click="get('publisherName',book_inf.publisherName)">
-    <v-icon>mdi-office-building</v-icon>
+  <v-btn fab large class="white mx-4" @click="get('publisherName',book_inf.publisherName)">
+    <v-icon color="blue-grey darken-4">mdi-office-building</v-icon>
   </v-btn>
   </div>
-    <!-- <p>{{dataa}}</p> -->
   <v-snackbar
       v-model="snackbar"
-      top=true>
+      :top="true">
     本が見つかりませんでした
     <template v-slot:action="{ attrs }">
         <v-btn
@@ -116,35 +116,12 @@ export default {
   data: () => ({
       show:false,
       snackbar: false,
-      show_love:false,
+      show_like:false,
   }),
-  methods: {
-    filters: {
-      omittedText(text,n) {
-      return text.length > n ? text.slice(0, n) + "…" : text;
-      }
-    },
+  filters: {
+    omittedText(text,n) {
+    return text.length > n ? text.slice(0, n) + "…" : text;
+    }
   },
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
-
-
-

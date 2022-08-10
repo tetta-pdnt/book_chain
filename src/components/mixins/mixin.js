@@ -6,7 +6,7 @@ export default {
     appid: '1036259511343410249',
   }),
   methods: {
-    fetchSample: async function(param,query){
+    fetch: async function(param,query){
       // 非同期処理を記述
       let result = ''
 
@@ -27,8 +27,8 @@ export default {
           return result
     },
     get: async function(param,query){
-      // this.fetchSample()の実行が完了するまで待機
-      let result = await this.fetchSample(param,query)
+      // this.fetch()の実行が完了するまで待機
+      let result = await this.fetch(param,query)
       if (result!==-1){
         const r_inf = {'title':result.title,
                       'author':result.author,

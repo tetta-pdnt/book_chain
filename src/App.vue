@@ -9,7 +9,7 @@
         ></v-img></v-col></v-row>
       <SearchBook v-on:r_inf="push_new_inf($event)"/>
       <BookShow v-for="b in books" :key="b.title" :book_inf="b" v-on:r_inf="push_new_inf($event)"/>
-      <v-snackbar 
+      <v-snackbar
       v-model="snackbar"
       top=true>
     すでにCHAINされている本です
@@ -49,7 +49,7 @@ export default {
     scroll() {
       const scrollY = window.scrollY || window.pageYOffset
       window.scrollTo({
-        top: scrollY + 1000,
+        top: scrollY + document.documentElement.scrollHeight,
         behavior: 'smooth'
       })
     },

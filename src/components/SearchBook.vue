@@ -8,6 +8,7 @@
       <v-text-field
         label="Search"
         placeholder="夏、アンドロイド、探偵、"
+        class="serch"
         rounded
         solo
         v-model="search"
@@ -26,59 +27,17 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Mixin from './mixins/mixin'
 
 export default {
   name: 'SearchBook',
   props: [],
+  mixins: [Mixin],
   data: () => ({
-      url: 'https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?applicationId=',
-      appid: '1036259511343410249',
       show:false,
       snackbar: false,
       search:""
   }),
-  methods: {
-    fetchSample: async function(param,query){
-      // 非同期処理を記述
-      let result = ''
-      
-      await axios.get(this.url + this.appid+
-                      '&booksGenreId=001004008'+
-                      '&sort=sales'+
-                      '&'+param+'='+query)
-        .then(function (response) {
-          let result_datas = response.data.Items
-          let rand
-          rand = Math.floor(Math.random() * Object.keys(result_datas).length)
-          result = result_datas[rand].Item
-        })
-        .catch(() => {
-          this.snackbar = true
-          result = -1
-        })
-          return result
-    },
-    get: async function(param,query){
-      // this.fetchSample()の実行が完了するまで待機
-      let result = await this.fetchSample(param,query)
-      if (result!==-1){
-        const r_inf = {'title':result.title,
-                      'author':result.author,
-                      'publisherName':result.publisherName,
-                      'largeImageUrl':result.largeImageUrl,
-                      'itemCaption':result.itemCaption,
-                      'itemUrl':result.itemUrl,
-                      'isbn':result.isbn}
-        this.$emit('r_inf',r_inf)
-      }
-    },
-  },
-  filters: {
-    omittedText(text,n) {
-     return text.length > n ? text.slice(0, n) + "…" : text;
-    }
-  },
 }
 </script>
 
@@ -98,8 +57,12 @@ li {
 a {
   color: #42b983;
 }
+.serch_book {
+  position: sticky;
+  top: 1rem;
+  z-index: 1;
+}
 </style>
 
 
 
- 

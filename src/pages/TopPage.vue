@@ -1,15 +1,18 @@
 <template>
   <v-main>
-    <v-row align-content="center" class="mt-16">
-      <v-col class="mt-10">
-        <v-img
-          src="@/assets/img/logo.png"
-          max-width=400
-          class="mx-auto mb-n13 pt-n10"
-        ></v-img>
-      </v-col>
-    </v-row>
-    <SearchBook @r_inf="push_new_inf($event)" @delete_books="delete_books()"/>
+    <v-container>
+      <v-row class="mt-16">
+        <v-col class="mt-10">
+          <v-img
+            src="@/assets/img/logo.png"
+            max-width=400
+            class="mx-auto mb-n13 pt-n10"
+          ></v-img>
+        </v-col>
+      </v-row>
+    </v-container>
+    <SearchBook @r_inf="push_new_inf($event)" @delete_books="delete_books()"
+    class="mb-9"/>
     <BookShow v-for="b in books" :key="b.title" :book_inf="b" @r_inf="push_new_inf($event)" @like="like($event)"
     />
     <v-snackbar

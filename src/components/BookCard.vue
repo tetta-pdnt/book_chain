@@ -1,11 +1,12 @@
 <template>
   <div class="book_card">
-    <v-img
-      :src='book_inf.largeImageUrl'
-      max-width="142.02"
-      height="220"
-      class="rounded"
-    ></v-img>
+    <v-col>
+      <v-img
+        :src='book_inf.largeImageUrl'
+        max-width="142.02"
+        class="rounded"
+      ></v-img>
+    </v-col>
     <!-- <v-card
     elevation="2"
     class="mx-auto"

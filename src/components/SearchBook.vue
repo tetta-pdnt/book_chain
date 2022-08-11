@@ -2,10 +2,10 @@
   <div class="serch_book" style="z-index: 100;">
     <v-col
       class="mx-auto"
-      cols="8"
+      cols="12"
       lg="4"
-      md="5"
-      sm="5"
+      md="6"
+      sm="6"
     >
       <v-text-field
         label="Search"
@@ -13,6 +13,7 @@
         class="serch"
         rounded
         solo
+        hide-details="false"
         v-model="search"
         @keydown.enter="search ? get('title',search) : ''">
         <template v-slot:append>
@@ -56,6 +57,5 @@ export default {
   top: 1rem;
 }
 </style>
-
 
 

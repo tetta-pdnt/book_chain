@@ -44,7 +44,7 @@ export default {
   methods:{
     delete_books(){
       this.$emit('delete_books')
-    }
+    },
   }
 }
 </script>

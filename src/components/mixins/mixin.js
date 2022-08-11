@@ -30,13 +30,15 @@ export default {
       // this.fetch()の実行が完了するまで待機
       let result = await this.fetch(param,query)
       if (result!==-1){
-        const r_inf = {'title':result.title,
+        const r_inf = {'isbn':result.isbn,
+                      'title':result.title,
                       'author':result.author,
                       'publisherName':result.publisherName,
                       'largeImageUrl':result.largeImageUrl,
                       'itemCaption':result.itemCaption,
                       'itemUrl':result.itemUrl,
-                      'isbn':result.isbn}
+                      'like':false
+                      }
         this.$emit('r_inf',r_inf)
       }
     },

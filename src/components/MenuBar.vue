@@ -22,9 +22,10 @@
       </template>
       <v-btn
         fab
-        dark
         small
+        dark
         color="blue-grey darken-4"
+        @click="to_like"
       >
         <v-icon>mdi-heart</v-icon>
       </v-btn>
@@ -50,6 +51,9 @@ export default {
   methods: {
     delete_books(){
       this.$emit('delete_books')
+    },
+    to_like(){
+      this.$router.push('/favorite')
     }
   }
 }

@@ -31,10 +31,10 @@
         icon
         class="mt-3"
         :retain-focus-on-click="false"
-        :color="show_like ? 'pink' : '' "
-        @click="show_like = !show_like"
+        :color="book_inf.like ? 'pink' : '' "
+        @click="like()"
         >
-        <v-icon>{{ show_like ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+        <v-icon>{{ book_inf.like ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
 
     <v-card-actions>
@@ -114,14 +114,18 @@ export default {
   props: ['book_inf'],
   mixins: [Mixin],
   data: () => ({
-      show:false,
+      show: false,
       snackbar: false,
-      show_like:false,
   }),
   filters: {
     omittedText(text,n) {
     return text.length > n ? text.slice(0, n) + "…" : text;
     }
   },
+  methods: {
+    like(){
+      this.$emit('like',this.book_inf.title)
+    }
+  }
 }
 </script>
